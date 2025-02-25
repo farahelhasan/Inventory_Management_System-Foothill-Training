@@ -17,6 +17,38 @@ namespace Inventory_Management_System_Inventory
             Products = new List<Product>();
 
         }
-        
+        public void AddProduct()
+        {
+            double price;
+            int quantity;
+            Console.Write("Enter the product name : ");
+            string name = Console.ReadLine() ?? string.Empty;
+            while (string.IsNullOrWhiteSpace(name))
+            {
+                Console.Write("Please enter valid name : ");
+                name = Console.ReadLine() ?? string.Empty;
+            }
+
+            Console.Write("Enter the product price : ");
+            string inputPrice = Console.ReadLine() ?? string.Empty;
+            while (!double.TryParse(inputPrice, out price))
+            {
+                Console.Write("Please enter valid price : ");
+                inputPrice = Console.ReadLine() ?? string.Empty;
+            }
+
+            Console.Write("Enter the product quantity : ");
+            string inputQuantity = Console.ReadLine() ?? string.Empty;
+            while (!int.TryParse(inputQuantity, out quantity))
+            {
+                Console.Write("Please enter valid quantity : ");
+                inputQuantity = Console.ReadLine() ?? string.Empty;
+            }
+            Product product = new Product(name, price, quantity);
+            Products.Add(product);
+        }
+
+       
+
     }
 }
