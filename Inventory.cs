@@ -63,6 +63,47 @@ namespace Inventory_Management_System_Inventory
             Console.WriteLine(allProducts.ToString());
         }
 
+        public void EditProduct()
+        {
+            Console.Write("Enter the product name to edit: ");
+            // ?? : i use it to be sure that if the user dosnt enter name, make it empty.
+            string searchName = Console.ReadLine() ?? string.Empty;
+            Product? product = Products.Find(p => p.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase));
+
+            if (product == null)
+            {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+
+            Console.WriteLine($"Editing Product: {product.Name}");
+            Console.Write("Enter new name (or press Enter to keep it the same): ");
+            // ! : (null-forgiving operator) i use it to tell the compiler that im sure its not nulli (gnore null warnings).
+            string newName = Console.ReadLine()!;
+            // if the string not null or "" or " "...
+            if (!string.IsNullOrWhiteSpace(newName))
+            {
+                product.Name = newName;
+            }
+
+            Console.Write("Enter new price (or press Enter to keep it the same): ");
+            string priceInput = Console.ReadLine()!;
+            // TryParse : to be sure that convert string is safe.
+            if (double.TryParse(priceInput, out double newPrice))
+            {
+                product.Price = newPrice;
+            }
+
+            Console.Write("Enter new quantity (or press Enter to keep it the same): ");
+            string quantityInput = Console.ReadLine()!;
+            if (int.TryParse(quantityInput, out int newQuantity))
+            {
+                product.Quantity = newQuantity;
+            }
+
+            Console.WriteLine("Product updated successfully!");
+        }
+
 
     }
 }
