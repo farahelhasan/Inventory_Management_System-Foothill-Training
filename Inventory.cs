@@ -104,6 +104,24 @@ namespace Inventory_Management_System_Inventory
             Console.WriteLine("Product updated successfully!");
         }
 
+        public void DeleteProduct()
+        {
+      
+            Console.Write("Enter the product name to delete: ");
+            // ?? : i use it to be sure that if the user dosnt enter name, make it empty.
+            string searchName = Console.ReadLine() ?? string.Empty;
+            Product? product = Products.Find(p => p.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase));
+
+            if (product == null)
+            {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+            Products.Remove(product);
+            Console.WriteLine("Product deleted successfully!");
+        
+        }
+
 
     }
 }
