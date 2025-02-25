@@ -122,6 +122,20 @@ namespace Inventory_Management_System_Inventory
         
         }
 
+        public void SearchForProduct()
+        {
+            Console.Write("Enter the product name to search: ");
+            string searchName = Console.ReadLine() ?? string.Empty;
+            Product? foundProduct = Products.Find(p => p.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase));
+            if (foundProduct != null)
+            {
+                Console.WriteLine(foundProduct.ToString());
+            }
+            else
+            {
+                Console.WriteLine("Product not found.");
+            }
+        }
 
     }
 }
