@@ -48,7 +48,21 @@ namespace Inventory_Management_System_Inventory
             Products.Add(product);
         }
 
-       
+        public void ShowAllProducts()
+        {
+            StringBuilder allProducts = new StringBuilder();
+
+            if (Products != null)
+            {
+                foreach (Product product in Products)
+                {
+                    allProducts.AppendLine(product.ToString());
+                }
+            }
+
+            Console.WriteLine(allProducts.ToString());
+        }
+
 
     }
 }
